@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ViewModel="clr-namespace:ExpoEjemplo.ViewModel"
+             x:Class="ExpoEjemplo.MainPage"
+             Title="Jugadores">
+    <ContentPage.BindingContext>
+        <ViewModel:PlayerViewModel></ViewModel:PlayerViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="PlayerList" Header="">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout>                                                       
+                                <Button Text="Insertar"  Clicked="Insert"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>                                
+                                <ScrollView>
+                                    <Grid Margin="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="{Binding id}" Grid.Column="0" x:Name="ID"/>
+                                        <Label Text="{Binding name}" Grid.Column="1" />
+                                        <Label Text="{Binding lastname}" Grid.Column="2"/>
+                                        <Label Text="{Binding nickname}" Grid.Column="3"/>
+                                        <Button Text="Editar" Grid.Column="4" Clicked="Update"/>
+                                        <Button Text="Eliminar" Grid.Column="5"  Clicked="Button_Clicked"/>
+                                    </Grid>
+                                </ScrollView>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

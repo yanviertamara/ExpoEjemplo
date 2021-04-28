@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ViewModel="clr-namespace:ExpoEjemplo.ViewModel"
+             x:Class="ExpoEjemplo.Create">
+    <ContentPage.BindingContext>
+        <ViewModel:PlayerViewModel></ViewModel:PlayerViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding id}" x:Name="id"/>
+            <Entry Placeholder="Nombre" Text="{Binding name}" x:Name="Nombre"/>
+            <Entry Placeholder="Apellidos" Text="{Binding lastname}" x:Name="Apellidos"/>
+            <Entry Placeholder="Email" Text="{Binding email}" x:Name="Email"/>
+            <Entry Placeholder="Teléfono"  Text="{Binding phone}" x:Name="Telefono"/>
+            <Entry Placeholder="Nickname" Text="{Binding nickname}" x:Name="Nickname"/>
+            <Entry Placeholder="Videojuego" Text="{Binding game}" x:Name="Videojuego"/>
+            <Button Text="Registrar" Clicked="Button_Clicked" Command="{Binding CreateCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

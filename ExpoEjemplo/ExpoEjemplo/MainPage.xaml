@@ -6,21 +6,18 @@
     <ContentPage.BindingContext>
         <ViewModel:PlayerViewModel></ViewModel:PlayerViewModel>
     </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+            <ToolbarItem 
+                 IconImageSource="agregar.png"
+                 Order="Primary"
+                 Priority="0"
+                Clicked="Insert"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="PlayerList" Header="">
-                <ListView.HeaderTemplate>
-                    <DataTemplate>
-                        <StackLayout>                                                       
-                                <Button Text="Insertar"  Clicked="Insert"/>
-                        </StackLayout>
-                    </DataTemplate>
-                </ListView.HeaderTemplate>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>                                
-                                <ScrollView>
+            <ListView x:Name="PlayerList"  Footer="">
+                <ListView.Header>
+                            <StackLayout>
                                     <Grid Margin="2">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition/>
@@ -31,12 +28,34 @@
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Text="{Binding id}" Grid.Column="0" x:Name="ID"/>
-                                        <Label Text="{Binding name}" Grid.Column="1" />
-                                        <Label Text="{Binding lastname}" Grid.Column="2"/>
-                                        <Label Text="{Binding nickname}" Grid.Column="3"/>
-                                        <Button Text="Editar" Grid.Column="4" Clicked="Update"/>
-                                        <Button Text="Eliminar" Grid.Column="5"  Clicked="Button_Clicked"/>
+                                        <Label FontSize="15" FontFamily="Verdana" Text="Nombre" Grid.Column="0" HorizontalTextAlignment="Center"/>
+                            <Label FontSize="15" FontFamily="Verdana" Text="Apellido" Grid.Column="1" HorizontalTextAlignment="Center"/>
+                            <Label FontSize="15" FontFamily="Verdana" Text="Nick" Grid.Column="2" HorizontalTextAlignment="Center"/>
+                            <Label FontSize="15" FontFamily="Verdana" Text="Acciones" Grid.Column="3" Grid.ColumnSpan="3" HorizontalTextAlignment="Center"/>                                        
+                                    </Grid>
+                            </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>                                
+                                <ScrollView>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label FontSize="14" FontFamily="Verdana" Text="{Binding name}" Grid.Column="0" HorizontalTextAlignment="Center"/>
+                                        <Label FontSize="14" FontFamily="Verdana" Text="{Binding lastname}" Grid.Column="1" HorizontalTextAlignment="Center"/>
+                                        <Label FontSize="15" FontFamily="Verdana" Text="{Binding nickname}" Grid.Column="2" HorizontalTextAlignment="Center"/>
+                                        <ImageButton Source="editar.png" WidthRequest="20" Grid.Column="3" BackgroundColor="Transparent" Clicked="Update"/>
+                                        <ImageButton Source="delete.png" WidthRequest="20" Grid.Column="4" BackgroundColor="Transparent" Clicked="Delete"/>
+                                        <ImageButton Source="mas.png" WidthRequest="20" Grid.Column="5" BackgroundColor="Transparent" Clicked="More"/>
                                     </Grid>
                                 </ScrollView>
                             </StackLayout>

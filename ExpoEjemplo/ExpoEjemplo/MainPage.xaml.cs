@@ -40,19 +40,36 @@ namespace ExpoEjemplo
         }
         private void Update(object sender, EventArgs e)
         {
-            var player = (Player)((Button)sender).BindingContext;
+            ImageButton btn = (ImageButton)sender;
+            var player = (Player)btn.BindingContext;
             Navigation.PushAsync(new Update(player));
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private async void Delete(object sender, EventArgs e)
         {
-            var player = (Player)((Button)sender).BindingContext;
+            ImageButton btn = (ImageButton)sender;
+            var player = (Player)btn.BindingContext;
             HttpClient client = new HttpClient();
             string JsonData = JsonConvert.SerializeObject(player);
             StringContent content = new StringContent(JsonData, Encoding.UTF8, "application/json");
             HttpResponseMessage  response = await client.DeleteAsync("http://127.0.0.1:8000/api/players/delete/" + player.id);
             string result = await response.Content.ReadAsStringAsync();
             base.OnAppearing();
+        }
+
+        private void More(object sender, EventArgs e)
+        {
+            ImageButton btn = (ImageButton)sender;
+            var player = (Player)btn.BindingContext;
+
+            DisplayAlert("Jugador #"+player.id,
+                "Nombre: "+player.name+"\n"+
+                "Apellido: "+player.lastname+"\n"+
+                "Email: "+player.email+"\n"+
+                "Teléfono: "+player.phone+"\n"+
+                "Nickname: "+player.nickname+"\n"+
+                "Videojuego: "+player.game+"\n"
+                ,"OK");
         }
     }
 }
